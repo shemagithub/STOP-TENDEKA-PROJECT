@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 112.93, "left": -116, "attrs": {} },
+    { "type": "board-ssd1306", "id": "oled1", "top": 185.48, "left": 91.62, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 188.93,
+      "left": -393.36,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": 168.53,
+      "left": -358.86,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir2",
+      "top": 169.82,
+      "left": -251.98,
+      "attrs": {}
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 167.49, "left": -516.11, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 248.48,
+      "left": -192.85,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "oled1:SCL", "esp:D22", "green", [ "v0" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v-12.28", "h-53.13", "v92.92", "h-7.65" ] ],
+    [ "oled1:SDA", "esp:D21", "green", [ "v0" ] ],
+    [ "esp:GND.1", "oled1:GND", "black", [ "h105.73", "v-78.99", "h-1.64" ] ],
+    [ "pir1:VCC", "pir2:VCC", "red", [ "v23.52", "h10.35" ] ],
+    [ "pir1:GND", "pir2:GND", "black", [ "v7.67", "h1.82" ] ],
+    [ "pir1:OUT", "esp:D12", "magenta", [ "v17.65", "h182.42", "v-35.05" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "r1:2", "esp:D13", "green", [ "v0" ] ],
+    [ "relay1:GND", "pir1:GND", "black", [ "h-14.37", "v91.69", "h230.32" ] ],
+    [ "relay1:VCC", "esp:D13", "red", [ "h-21.35", "v105.57", "h416.44", "v-38" ] ],
+    [ "led1:A", "r1:1", "green", [ "v0" ] ],
+    [ "pir2:OUT", "esp:D14", "magenta", [ "v12.4", "h69.53", "v-9.31" ] ]
+  ],
+  "dependencies": {}
+}
